@@ -2,7 +2,7 @@ import { useReducer } from "react";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import HeroSection from "./components/HeroSection";
-import TaskContainer from "./components/tasks/taskContainer";
+import TaskContainer from "./components/tasks/TaskContainer.jsx";
 import { TaskContext } from "./context";
 import { initialState, taskReducer } from "./reducers/taskReducer";
 
