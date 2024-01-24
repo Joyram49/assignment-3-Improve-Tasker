@@ -32,13 +32,13 @@ function taskReducer(state, action) {
         ...state,
         tasks: state.tasks.slice(0, 0),
       };
-    case "SEARCH_TASK":
-      const searchText = action.payload.trim();
-      const nextTasks = state.tasks.filter((task) =>
-        task.title.toLowerCase().includes(searchText.toLowerCase())
-      );
-      const nextState = { ...state, tasks: [...nextTasks] };
-      return searchText === "" ? initialState : nextState;
+    // case "SEARCH_TASK":
+    //   const searchText = action.payload.trim();
+    //   const nextTasks = state.tasks.filter((task) =>
+    //     task.title.toLowerCase().includes(searchText.toLowerCase())
+    //   );
+    //   const nextState = { ...state, tasks: [...nextTasks] };
+    //   return searchText === "" ? initialState : nextState;
 
     case "TOGGLE_FAVOURITE":
       return {

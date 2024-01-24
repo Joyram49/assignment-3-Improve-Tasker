@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { SearchedContext } from "../../context";
 
-export default function SearchBox({ dispatch }) {
+export default function SearchBox() {
   const [searchText, setSearchText] = useState("");
+  const { setSearchTerm } = useContext(SearchedContext);
 
   // debounce function
   const debounceHandler = (fn, delay) => {
@@ -18,10 +20,7 @@ export default function SearchBox({ dispatch }) {
 
   // Debounced search function
   const doSearch = (value) => {
-    dispatch({
-      type: "SEARCH_TASK",
-      payload: value,
-    });
+    setSearchTerm(value);
   };
   const debouncedSearch = debounceHandler(doSearch, 500);
 

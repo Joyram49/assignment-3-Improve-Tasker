@@ -32,7 +32,7 @@ export default function TaskAction({ onAddClick, dispatch, tasks = [] }) {
         </div>
       )}
       <div className='flex items-center space-x-5'>
-        <SearchBox dispatch={dispatch} />
+        <SearchBox />
         <button
           className='rounded-md bg-blue-500 px-3.5 py-2.5 text-sm font-semibold'
           onClick={onAddClick}
@@ -45,7 +45,7 @@ export default function TaskAction({ onAddClick, dispatch, tasks = [] }) {
           }`}
           onClick={handleDeleteAllBtnClick}
           disabled={tasks.length === 0}
-          title={tasks.length === 0 ? "There is no task found!!" : ""}
+          title={tasks.length === 0 ? "There is no task left!!" : ""}
         >
           Delete All
         </button>

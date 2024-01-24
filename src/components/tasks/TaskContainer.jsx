@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { toast } from "react-toastify";
-import { TaskContext } from "../../context";
+import { SearchedContext, TaskContext } from "../../context";
 import NoTaskFound from "../NoTaskFound";
 import AddOrEditModal from "./AddOrEditModal";
 import TaskAction from "./TaskAction";
@@ -9,6 +9,7 @@ import TaskList from "./TaskList";
 export default function TaskContainer() {
   const [showModal, setShowModal] = useState(false);
   const [taskToUpdate, setTaskToUpdate] = useState(null);
+  const { searchTerm } = useContext(SearchedContext);
 
   const {
     state: { tasks },
@@ -38,6 +39,14 @@ export default function TaskContainer() {
     handleCloseModal();
   };
 
+  // filter task according to search term
+  const filteredTasks = () => {
+    let nextTasks = [...tasks];
+    return nextTasks.filter((task) =>
+      task.title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  };
+
   // handle function on click edit button
   const handleEditClick = (task) => {
     setTaskToUpdate(task);
@@ -65,13 +74,13 @@ export default function TaskContainer() {
             <TaskAction
               onAddClick={() => setShowModal(true)}
               dispatch={dispatch}
-              tasks={tasks}
+              tasks={filteredTasks()}
             />
           </div>
-          {tasks.length === 0 ? (
+          {filteredTasks().length === 0 ? (
             <NoTaskFound />
           ) : (
-            <TaskList tasks={tasks} onEditClick={handleEditClick} />
+            <TaskList tasks={filteredTasks()} onEditClick={handleEditClick} />
           )}
         </div>
       </div>
